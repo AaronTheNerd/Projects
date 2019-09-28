@@ -4,7 +4,7 @@ CXXFLAGS = -Wall -g
 
 FOREST = $(wildcard ../Forest/*.h) $(wildcard ../Forest/*.cc)
 TESTING_FILES = $(wildcard ../src/*.h) $(wildcard ../src/*.cc)
-OBJ_FILES = AVL_Testing.o BST_Testing.o DL_Testing.o Forest_Testing.o Huffman.o TTTree_Testing.o
+OBJ_FILES = AVL_Testing.o BST_Testing.o DL_Testing.o Forest_Testing.o Huffman.o
 
 tree: $(TESTING_FILES) $(FOREST) $(OBJ_FILES)
 	$(CXX) $(CXXFLAGS) -o tree *.o
@@ -23,9 +23,6 @@ Huffman.o: ../src/Huffman_Testing.* ../Forest/Huffman.*
 
 AVL_Testing.o: ../src/AVL_Testing.* ../Forest/AVLTree.*
 	$(CXX) $(CXXFLAGS) -c ../src/AVL_Testing.cc
-
-TTTree_Testing.o: ../src/TTTree_Testing.* ../Forest/TwoThreeTree.*
-	$(CXX) $(CXXFLAGS) -c ../src/TTTree_Testing.cc
 
 clean:
 	rm *.o tree
