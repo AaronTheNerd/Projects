@@ -87,7 +87,7 @@ class BigInt {
 
 
 // ========================== Non-Class Functions ========================== //
-std::ostream& operator<<(std::ostream& out, const BigInt& n) { // Testing Required
+std::ostream& operator<<(std::ostream& out, const BigInt& n) {
   out << bits2str(n.bits);
   return out;
 }
@@ -176,8 +176,30 @@ BigInt& BigInt::operator+=(const unsigned long long& num) {
 
 
 // =========================== Minus and Assign ============================ //
-BigInt& BigInt::operator-=(const BigInt& n) { }
-BigInt& BigInt::operator-=(const unsigned long long& num) { }
+BigInt& BigInt::operator-=(const BigInt& n) {
+  bool n1 = 0, n2 = 0;
+  for (size_t i = 0; i < BITS; ++i) {
+    n1 = this->bits[i];
+    n2 = n.bits[i];
+    this->bits[i] = n1 ^ n2;
+    if (n2 && !n1) {
+      for (size_t j = i + 1; j < BITS; ++j) {
+        if (this->bits[j]) {
+          this->bits[j] = 0;
+          break;
+        } else {
+          this->bits[j] = 1;
+        }
+      }
+    }
+  }
+  return *this;
+}
+BigInt& BigInt::operator-=(const unsigned long long& num) {
+  BigInt n(num);
+  *this -= n;
+  return *this;
+}
 
 
 // ========================== Multiply and Assign ========================== //
@@ -271,7 +293,11 @@ BigInt& BigInt::operator+(const unsigned long long& num) const {
 
 
 // ================================= Minus ================================= //
-BigInt& BigInt::operator-(const BigInt& n) const { }
+BigInt& BigInt::operator-(const BigInt& n) const {
+  BigInt* difference = new BigInt(*this);
+  *difference -= n;
+  return *difference;
+}
 BigInt& BigInt::operator-(const unsigned long long& num) const {
   return *this - BigInt(num);
 }
