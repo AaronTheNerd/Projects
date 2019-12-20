@@ -34,8 +34,8 @@ class BigInt {
   BigInt& operator=(const unsigned long long& num);
   BigInt& operator+=(const BigInt& n);
   BigInt& operator+=(const unsigned long long& num);
-  BigInt& operator-=(const BigInt& n); // TODO
-  BigInt& operator-=(const unsigned long long& num); // TODO
+  BigInt& operator-=(const BigInt& n); // Testing Required
+  BigInt& operator-=(const unsigned long long& num); // Testing Required
   BigInt& operator*=(const BigInt& n);
   BigInt& operator*=(const unsigned long long& num);
   BigInt& operator/=(const BigInt& n); // TODO
@@ -52,8 +52,8 @@ class BigInt {
   BigInt& operator>>=(const size_t& pos); // Testing Required
   BigInt& operator+(const BigInt& n) const;
   BigInt& operator+(const unsigned long long& num) const;
-  BigInt& operator-(const BigInt& n) const; // TODO
-  BigInt& operator-(const unsigned long long& num) const; // TODO
+  BigInt& operator-(const BigInt& n) const; // Testing Required
+  BigInt& operator-(const unsigned long long& num) const; // Testing Required
   BigInt& operator*(const BigInt& n) const; // Testing Required
   BigInt& operator*(const unsigned long long& num) const; // Testing Required
   BigInt& operator/(const BigInt& n) const; // TODO
@@ -75,14 +75,14 @@ class BigInt {
   bool operator==(const unsigned long long& num) const; // Testing Required
   bool operator!=(const BigInt& n) const; // Testing Required
   bool operator!=(const unsigned long long& num) const; // Testing Required
-  bool operator<(const BigInt& n) const; // TODO
-  bool operator<(const unsigned long long& num) const; // TODO
-  bool operator>(const BigInt& n) const; // TODO
-  bool operator>(const unsigned long long& num) const; // TODO
-  bool operator<=(const BigInt& n) const; // TODO
-  bool operator<=(const unsigned long long& num) const; // TODO
-  bool operator>=(const BigInt& n) const; // TODO
-  bool operator>=(const unsigned long long& num) const; // TODO
+  bool operator<(const BigInt& n) const; // Testing Required
+  bool operator<(const unsigned long long& num) const; // Testing Required
+  bool operator>(const BigInt& n) const; // Testing Required
+  bool operator>(const unsigned long long& num) const; // Testing Required
+  bool operator<=(const BigInt& n) const; // Testing Required
+  bool operator<=(const unsigned long long& num) const; // Testing Required
+  bool operator>=(const BigInt& n) const; // Testing Required
+  bool operator>=(const unsigned long long& num) const; // Testing Required
 };
 
 
@@ -400,14 +400,46 @@ bool BigInt::operator!=(const BigInt& n) const {
 bool BigInt::operator!=(const unsigned long long& num) const {
   return this->bits != std::bitset<BITS>(num);
 }
-bool BigInt::operator<(const BigInt& n) const { }
-bool BigInt::operator<(const unsigned long long& num) const { }
-bool BigInt::operator>(const BigInt& n) const { }
-bool BigInt::operator>(const unsigned long long& num) const { }
-bool BigInt::operator<=(const BigInt& n) const { }
-bool BigInt::operator<=(const unsigned long long& num) const { }
-bool BigInt::operator>=(const BigInt& n) const { }
-bool BigInt::operator>=(const unsigned long long& num) const { }
+bool BigInt::operator<(const BigInt& n) const {
+  for (size_t i = BITS - 1; i != size_t(-1); --i) {
+    if (this->bits[i] ^ n.bits[i])
+      return (n.bits[i]) ? true : false;
+  }
+  return false;
+}
+bool BigInt::operator<(const unsigned long long& num) const {
+  return *this < BigInt(num);
+}
+bool BigInt::operator>(const BigInt& n) const {
+  for (size_t i = BITS - 1; i != size_t(-1); --i) {
+    if (this->bits[i] ^ n.bits[i])
+      return (this->bits[i]) ? true : false;
+  }
+  return false;
+}
+bool BigInt::operator>(const unsigned long long& num) const {
+  return *this > BigInt(num);
+}
+bool BigInt::operator<=(const BigInt& n) const {
+  for (size_t i = BITS - 1; i != size_t(-1); --i) {
+    if (this->bits[i] ^ n.bits[i])
+      return (n.bits[i]) ? true : false;
+  }
+  return true;
+}
+bool BigInt::operator<=(const unsigned long long& num) const {
+  return *this <= BigInt(num);
+}
+bool BigInt::operator>=(const BigInt& n) const {
+  for (size_t i = BITS - 1; i != size_t(-1); --i) {
+    if (this->bits[i] ^ n.bits[i])
+      return (this->bits[i]) ? true : false;
+  }
+  return true;
+}
+bool BigInt::operator>=(const unsigned long long& num) const {
+  return *this >= BigInt(num);
+}
 
 
 #endif // _BIGINT_BIGINT_HPP_
