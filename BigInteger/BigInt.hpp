@@ -6,6 +6,8 @@
 // Implement a 1024 bit / 128 byte unsigned integer class
 // Additionally, the goal is to do as much as possible bitwise rather than
 // through conversions
+// Unfortunately I cannot think of a way to create a decimal representation of
+// the BigInt without using string and int conversions 
 
 
 #ifndef _BIGINT_BIGINT_HPP_
@@ -27,62 +29,62 @@ class BigInt {
   std::bitset<BITS> bits;
   explicit BigInt();
   explicit BigInt(const unsigned long long& num);
-  explicit BigInt(const std::string& str); // TODO
+  explicit BigInt(const std::string& str);
   explicit BigInt(const BigInt& n);
   ~BigInt();
   BigInt& operator=(const BigInt& n);
   BigInt& operator=(const unsigned long long& num);
   BigInt& operator+=(const BigInt& n);
   BigInt& operator+=(const unsigned long long& num);
-  BigInt& operator-=(const BigInt& n); // Testing Required
-  BigInt& operator-=(const unsigned long long& num); // Testing Required
+  BigInt& operator-=(const BigInt& n);
+  BigInt& operator-=(const unsigned long long& num);
   BigInt& operator*=(const BigInt& n);
   BigInt& operator*=(const unsigned long long& num);
-  BigInt& operator/=(const BigInt& n); // TODO
-  BigInt& operator/=(const unsigned long long& num); // TODO
-  BigInt& operator%=(const BigInt& n); // TODO
-  BigInt& operator%=(const unsigned long long& num); // TODO
-  BigInt& operator&=(const BigInt& n); // Testing Required
-  BigInt& operator&=(const unsigned long long& num); // Testing Required
-  BigInt& operator|=(const BigInt& n); // Testing Required
-  BigInt& operator|=(const unsigned long long& num); // Testing Required
-  BigInt& operator^=(const BigInt& n); // Testing Required
-  BigInt& operator^=(const unsigned long long& num); // Testing Required
-  BigInt& operator<<=(const size_t& pos); // Testing Required
-  BigInt& operator>>=(const size_t& pos); // Testing Required
+  BigInt& operator/=(const BigInt& n);
+  BigInt& operator/=(const unsigned long long& num);
+  BigInt& operator%=(const BigInt& n);
+  BigInt& operator%=(const unsigned long long& num);
+  BigInt& operator&=(const BigInt& n);
+  BigInt& operator&=(const unsigned long long& num);
+  BigInt& operator|=(const BigInt& n);
+  BigInt& operator|=(const unsigned long long& num);
+  BigInt& operator^=(const BigInt& n);
+  BigInt& operator^=(const unsigned long long& num);
+  BigInt& operator<<=(const size_t& pos);
+  BigInt& operator>>=(const size_t& pos);
   BigInt& operator+(const BigInt& n) const;
   BigInt& operator+(const unsigned long long& num) const;
-  BigInt& operator-(const BigInt& n) const; // Testing Required
-  BigInt& operator-(const unsigned long long& num) const; // Testing Required
-  BigInt& operator*(const BigInt& n) const; // Testing Required
-  BigInt& operator*(const unsigned long long& num) const; // Testing Required
-  BigInt& operator/(const BigInt& n) const; // TODO
-  BigInt& operator/(const unsigned long long& num) const; // TODO
-  BigInt& operator%(const BigInt& n) const; // TODO
-  BigInt& operator%(const unsigned long long& num) const; // TODO
-  BigInt& operator&(const BigInt& n) const; // Testing Required
-  BigInt& operator&(const unsigned long long& num) const; // Testing Required
-  BigInt& operator|(const BigInt& n) const; // Testing Required
-  BigInt& operator|(const unsigned long long& num) const; // Testing Required
-  BigInt& operator^(const BigInt& n) const; // Testing Required
-  BigInt& operator^(const unsigned long long& num) const; // Testing Required
-  BigInt& operator<<(const size_t& pos) const; // Testing Required
-  BigInt& operator>>(const size_t& pos) const; // Testing Required
-  BigInt& operator++(); // Testing Required
-  BigInt& operator--(); // Testing Required
-  BigInt& operator~() const; // Testing Required
-  bool operator==(const BigInt& n) const; // Testing Required
-  bool operator==(const unsigned long long& num) const; // Testing Required
-  bool operator!=(const BigInt& n) const; // Testing Required
-  bool operator!=(const unsigned long long& num) const; // Testing Required
-  bool operator<(const BigInt& n) const; // Testing Required
-  bool operator<(const unsigned long long& num) const; // Testing Required
-  bool operator>(const BigInt& n) const; // Testing Required
-  bool operator>(const unsigned long long& num) const; // Testing Required
-  bool operator<=(const BigInt& n) const; // Testing Required
-  bool operator<=(const unsigned long long& num) const; // Testing Required
-  bool operator>=(const BigInt& n) const; // Testing Required
-  bool operator>=(const unsigned long long& num) const; // Testing Required
+  BigInt& operator-(const BigInt& n) const;
+  BigInt& operator-(const unsigned long long& num) const;
+  BigInt& operator*(const BigInt& n) const;
+  BigInt& operator*(const unsigned long long& num) const;
+  BigInt& operator/(const BigInt& n) const;
+  BigInt& operator/(const unsigned long long& num) const;
+  BigInt& operator%(const BigInt& n) const;
+  BigInt& operator%(const unsigned long long& num) const;
+  BigInt& operator&(const BigInt& n) const;
+  BigInt& operator&(const unsigned long long& num) const;
+  BigInt& operator|(const BigInt& n) const;
+  BigInt& operator|(const unsigned long long& num) const;
+  BigInt& operator^(const BigInt& n) const;
+  BigInt& operator^(const unsigned long long& num) const;
+  BigInt& operator<<(const size_t& pos) const;
+  BigInt& operator>>(const size_t& pos) const;
+  BigInt& operator++();
+  BigInt& operator--();
+  BigInt& operator~() const;
+  bool operator==(const BigInt& n) const;
+  bool operator==(const unsigned long long& num) const;
+  bool operator!=(const BigInt& n) const;
+  bool operator!=(const unsigned long long& num) const;
+  bool operator<(const BigInt& n) const;
+  bool operator<(const unsigned long long& num) const;
+  bool operator>(const BigInt& n) const;
+  bool operator>(const unsigned long long& num) const;
+  bool operator<=(const BigInt& n) const;
+  bool operator<=(const unsigned long long& num) const;
+  bool operator>=(const BigInt& n) const;
+  bool operator>=(const unsigned long long& num) const;
 };
 
 
@@ -94,12 +96,18 @@ std::ostream& operator<<(std::ostream& out, const BigInt& n) {
 BigInt& operator+(const unsigned long long& num, const BigInt& n) {
   return n + num;
 }
-BigInt& operator-(const unsigned long long& num, const BigInt& n);
+BigInt& operator-(const unsigned long long& num, const BigInt& n) {
+  return BigInt(num) - n;
+}
 BigInt& operator*(const unsigned long long& num, const BigInt& n) {
   return n * num;
 }
-BigInt& operator/(const unsigned long long& num, const BigInt& n);
-BigInt& operator%(const unsigned long long& num, const BigInt& n);
+BigInt& operator/(const unsigned long long& num, const BigInt& n) {
+  return BigInt(num) / n;
+}
+BigInt& operator%(const unsigned long long& num, const BigInt& n) {
+  return BigInt(num) % n;
+}
 BigInt& operator&(const unsigned long long& num, const BigInt& n) {
   return n & num;
 }
@@ -120,17 +128,21 @@ BigInt::BigInt(const unsigned long long& num) {
   this->bits = std::bitset<BITS>(num);
 }
 BigInt::BigInt(const std::string& str) {
+  if (str.empty()) {
+    this->bits = std::bitset<BITS>(0);
+    return;
+  }
   if (str.size() <= 2) { // No format, therefore must be decimal or invalid
-    
-  } else {
-    std::string format = str.substr(0, 2);
-    if (format == std::string("0B") || format == std::string("0b")) {
-      this->bits = std::bitset<BITS>(str.substr(2, str.size() - 2));
-    } else if (format == std::string("0x") || format == std::string("0X")) {
-
-    } else {
-        
-    }
+    this->bits = std::bitset<BITS>(decimal2binary(str));
+    return;
+  }
+  std::string format = str.substr(0, 2);
+  if (format == std::string("0B") || format == std::string("0b")) { // Binary
+    this->bits = std::bitset<BITS>(str.substr(2, str.size() - 2));
+  } else if (format == std::string("0X") || format == std::string("0x")) { // Hexadecimal
+    this->bits = std::bitset<BITS>(hex2binary(str.substr(2, str.size() - 2)));
+  } else { // Decimal
+    this->bits = std::bitset<BITS>(decimal2binary(str));
   }
 }
 BigInt::BigInt(const BigInt& n) { // May be unnecessary
@@ -139,7 +151,7 @@ BigInt::BigInt(const BigInt& n) { // May be unnecessary
       this->bits[i] = n.bits[i];
 }
 BigInt::~BigInt() { // May be unnecessary
-
+  return;
 }
 
 
@@ -204,14 +216,13 @@ BigInt& BigInt::operator-=(const unsigned long long& num) {
 
 // ========================== Multiply and Assign ========================== //
 BigInt& BigInt::operator*=(const BigInt& n) {
-  BigInt* mult = new BigInt(0);
+  BigInt mult(0);
   for (size_t i = 0; i < BITS; ++i) {
     if (this->bits[i]) {
-      *mult += (n << i);
+      mult += (n << i);
     }
   }
-  this->bits = mult->bits;
-  delete mult;
+  this->bits = mult.bits;
   return *this;
 }
 BigInt& BigInt::operator*=(const unsigned long long& num) {
@@ -222,13 +233,46 @@ BigInt& BigInt::operator*=(const unsigned long long& num) {
 
 
 // =========================== Divide and Assign =========================== //
-BigInt& BigInt::operator/=(const BigInt& n) { }
-BigInt& BigInt::operator/=(const unsigned long long& num) { }
+BigInt& BigInt::operator/=(const BigInt& n) {
+  BigInt curr(0);
+  for (size_t i = BITS - 1; i != size_t(-1); --i) {
+    (curr <<= 1) += this->bits[i];
+    if (curr >= n) {
+      this->bits[i] = 1;
+      curr -= n;
+    } else {
+      this->bits[i] = 0;
+    }
+  }
+  return *this;
+}
+BigInt& BigInt::operator/=(const unsigned long long& num) {
+  BigInt n(num);
+  *this /= n;
+  return *this;
+}
 
 
 // ============================ Mod and Assign ============================= //
-BigInt& BigInt::operator%=(const BigInt& n) { }
-BigInt& BigInt::operator%=(const unsigned long long& num) { }
+BigInt& BigInt::operator%=(const BigInt& n) {
+  BigInt curr(0);
+  for (size_t i = BITS - 1; i != size_t(-1); --i) {
+    (curr <<= 1) += this->bits[i];
+    if (curr >= n) {
+      this->bits[i] = 1;
+      curr -= n;
+    } else {
+      this->bits[i] = 0;
+    }
+  }
+  this->bits = curr.bits;
+  return *this;
+}
+BigInt& BigInt::operator%=(const unsigned long long& num) {
+  BigInt n(num);
+  *this %= n;
+  return *this;
+}
 
 
 // ============================ AND and Assign ============================= //
@@ -315,13 +359,25 @@ BigInt& BigInt::operator*(const unsigned long long& num) const {
 
 
 // ================================ Divide ================================= //
-BigInt& BigInt::operator/(const BigInt& n) const { }
-BigInt& BigInt::operator/(const unsigned long long& num) const { }
+BigInt& BigInt::operator/(const BigInt& n) const {
+  BigInt* quotient = new BigInt(*this);
+  *quotient /= n;
+  return *quotient;
+}
+BigInt& BigInt::operator/(const unsigned long long& num) const {
+  return *this / BigInt(num);
+}
 
 
 // ================================== Mod ================================== //
-BigInt& BigInt::operator%(const BigInt& n) const { }
-BigInt& BigInt::operator%(const unsigned long long& num) const { }
+BigInt& BigInt::operator%(const BigInt& n) const {
+  BigInt* mod = new BigInt(*this);
+  *mod %= n;
+  return *mod;
+}
+BigInt& BigInt::operator%(const unsigned long long& num) const {
+  return *this % BigInt(num);
+}
 
 
 // ================================== AND ================================== //
