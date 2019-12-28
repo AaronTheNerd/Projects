@@ -2,6 +2,10 @@
 // Copyright 2019
 
 
+// This file contains the code to turn bits to strings and vice versa.
+
+
+
 #ifndef _BIGINT_BITS2STR_HPP_
 #define _BIGINT_BITS2STR_HPP_
 #include "BigInt.hpp"
@@ -20,6 +24,10 @@ void plus_eq(std::string&, std::string);
 void double_str(std::string&);
 int char2int(char);
 char int2char(int);
+std::string decimal2binary(std::string&);
+bool is_even(const std::string&);
+void half_str(std::string&);
+std::string hex2binary(const std::string&);
 
 // ============================ Implementation ============================= //
 std::string bits2str(std::bitset<BITS> bits) {
@@ -83,8 +91,68 @@ int char2int(char c) {
   return int(c) - int('0');
 }
 
+
 char int2char(int i) {
   return char(i + int('0'));
+}
+
+
+std::string decimal2binary(std::string str) {
+  std::string ret("");
+  do {
+    ret = (is_even(str) ? "0" : "1") + ret;
+    half_str(str);
+  } while (str != std::string("0"));
+  return ret;
+}
+
+
+bool is_even(const std::string& str) {
+  auto i = str.rbegin();
+  return *i == '0' || *i == '2' || *i == '4' || *i == '6' || *i == '8';
+}
+
+
+void half_str(std::string& str) {
+  int curr, carry = 0;
+  for (auto i = str.begin(); i != str.end(); ++i) {
+    assert(int(*i) >= int('0') && int(*i) <= int('9'));
+    curr = carry + char2int(*i);
+    if (curr % 2 == 1)
+      carry = 10;
+    else
+     carry = 0;
+    curr >>= 1;
+    *i = int2char(curr);
+  }
+  if (str[0] == '0' && str.size() > 1)
+    str.erase(str.begin());
+}
+
+
+std::string hex2binary(const std::string& str) {
+  assert(str.size() <= BITS / 4);
+  std::string ret("");
+  for (auto i = str.begin(); i < str.end(); ++i) {
+    if (*i == '0') ret += "0000";
+    else if (*i == '1') ret += "0001";
+    else if (*i == '2') ret += "0010";
+    else if (*i == '3') ret += "0011";
+    else if (*i == '4') ret += "0100";
+    else if (*i == '5') ret += "0101";
+    else if (*i == '6') ret += "0110";
+    else if (*i == '7') ret += "0111";
+    else if (*i == '8') ret += "1000";
+    else if (*i == '9') ret += "1001";
+    else if (*i == 'a' || *i == 'A') ret += "1010";
+    else if (*i == 'b' || *i == 'B') ret += "1011";
+    else if (*i == 'c' || *i == 'C') ret += "1100";
+    else if (*i == 'd' || *i == 'D') ret += "1101";
+    else if (*i == 'e' || *i == 'E') ret += "1110";
+    else if (*i == 'f' || *i == 'F') ret += "1111";
+    else throw;
+  }
+  return ret;
 }
 
 
