@@ -1,0 +1,153 @@
+:root {
+    --navy-blue: #100033;
+    --light-green: #00ff80;
+    --dark-green: #16831b;
+}
+* {
+    box-sizing: border-box;
+}
+html {
+    scroll-behavior: smooth;
+}
+body {
+    background-color: var(--navy-blue);
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0px;
+    padding: 0px;
+}
+h1 {
+    margin-bottom: 0;
+}
+hr {
+    border: none;
+    height: 2px;
+}
+.container {
+    margin: 0px;
+    padding: 0px;
+}
+.navbar {
+    background-color: var(--light-green);
+    position: sticky;
+    top: 0px;
+}
+.navbar a {
+    background-color: var(--light-green);
+    font-weight: bold;
+    display: block;
+    float: left;
+    text-align: center;
+    width: 25%;
+    padding: 10px;
+    color: var(--navy-blue);
+    text-decoration: none;
+    transition: 500ms;
+}
+.navbar a:hover, .dropdown:hover .dropdown-button {
+    background-color: white;
+    color: black;
+}
+.dropdown {
+    width: 25%;
+    float: left;
+    overflow: hidden;
+}
+.dropdown .dropdown-button {
+    text-align: center;
+    width: 100%;
+    color: var(--navy-blue);
+    padding: 10px;
+    background-color: var(--light-green);
+}
+.dropdown-content {
+    display: none;
+    width: 25%;
+    position: absolute;
+    top: 40px;
+    background-color: white;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+.dropdown-content a {
+    width: 100%;
+    float: none;
+    background-color: white;
+    color: black;
+    padding: 5px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+.dropdown-content a:hover {
+    background-color: #DDDDDD;
+}
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+.arrow-down {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-top: 7px solid black;
+}
+.content {
+    padding: 20px;
+}
+.accent-light {
+    color: var(--light-green);
+}
+.accent-dark {
+    color: var(--dark-green);
+}
+.float-right {
+    float: right;
+}
+#header {
+    height: 20%;
+    position: relative;
+    text-align: center;
+    background-color: var(--navy-blue);
+    color: white;
+    padding: 40px 40px 20px 40px;
+}
+#me-image {
+    margin-left: auto;
+    margin-right: auto;
+    float: none;
+    border-radius: 50%;
+    border: 5px solid var(--light-green);
+    display: block;
+    width: 20%;
+}
+#about {
+    background-color: white;
+    color: var(--navy-blue);
+}
+#about hr {
+    background-color: var(--navy-blue);
+}
+#education {
+    background-color: var(--navy-blue);
+    color: white;
+}
+#education hr {
+    background-color: white;
+}
+#work-experience {
+    background-color: white;
+    color: var(--navy-blue);
+}
+#work-experience hr {
+    background-color: black;
+}
+#projects {
+    background-color: var(--navy-blue);
+    color: white;
+}
+#projects hr {
+    background-color: white;
+}

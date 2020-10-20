@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>My Online Portfolio</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="style/style.css">
+    </head>
+    <body onload="get_dropdown_height()" class="container">
+        <div id="header" class="container">
+            <img id="me-image" src="images/me.webp" alt="me">
+            <h1>Aaron Barge</h1>
+        </div>
+        <nav class="navbar">
+            <a href="#about">About</a>
+            <a href="#education">Education</a>
+            <a href="#work-experience">Work Experience</a>
+            <div class="dropdown">
+                <a class="dropdown-button" href="#projects">Projects
+                    <div class="arrow-down"></div>
+                </a>
+                <div id="dropdown-content-id" class="dropdown-content">
+                    <a href="#">Personal</a>
+                    <a href="#">Optional School</a>
+                    <a href="#">Required School</a>
+                </div>
+            </div>
+        </nav>
+        <div id="about" class="content">
+            <h1>About</h1>
+            <hr>
+        </div>
+        <div id="education" class="content">
+            <h1>Education</h1>
+            <hr>
+            University of South Carolina
+            <span class="float-right">
+                Expected Graduation: <span class="accent-light">May 2021</span>
+            </span><br>
+            <i>Bachelor of Science in Computer Engineering</i><br>
+            <ul>
+                <li><span class="accent-light">GPA: </span>3.48</li>
+                <li><span class="accent-light">Dean's List: </span>5 semesters</li>
+            </ul>
+            <h1>Coursework</h1>
+            <hr>
+            <span class="accent-light">Introduction to Computer Networks - </span>
+            Learned the concepts and components of computer networks and the Internet; network
+            applications; network protocol stack.<br>
+            <span class="accent-light">Data Structures and Algorithms - </span>
+            Learned techniques for representing and processing information, including the use of
+            lists, trees, and graphs; analysis of algorithms; sorting, searching, and hashing
+            techniques.<br>
+            <span class="accent-light">Operating Systems - </span>
+            Learned operating system structure and function; process implementation, scheduling,
+            and synchronization; memory management; security; naming protection; resource
+            allocation; network file systems.<br>
+            <span class="accent-light">Discrete Structures - </span>
+            Learned propositional and predicate logic; proof techniques; recursion and recurrence
+            relations; sets, combinatorics, and probability; functions, relations, and matrices;
+            algebraic structures. <br>
+        </div>
+        <div id="work-experience" class="content">
+            <h1>Work Experience</h1>
+            <hr>
+            <span class="accent-dark">Publix: </span> Irmo, SC
+            <span class="float-right accent-dark">July 2018 - Present</span><br>
+            <i>Boar's Head Certified Premium Deli Professional</i>
+            <ul>
+                <li>
+                    <span class="accent-dark">Interact</span> with approximately 100 customers per
+                    day, <span class="accent-dark">informing</span> them of store and product
+                    information, answer questions, and provide <span class="accent-dark">helpful
+                    suggestions</span>.
+                </li>
+                <li>
+                    Maintain a <span class="accent-dark">clean and organized</span> working
+                    environment to ensure <span class="accent-dark">customer satisfaction</span>.
+                </li>
+                <li>
+                    <span class="accent-dark">Safely</span> handle knives, slicers, and fryers in
+                    order to prepare food for customers.
+                </li>
+                <li>
+                    Work closely with 3-6 other associates to ensure a clean environment and
+                    <span class="accent-dark">hasty customer assistance</span>
+                </li>
+            </ul>
+            <hr>
+            <span class="accent-dark">Code Ninjas: </span> Lexington, SC
+            <span class="float-right accent-dark">July 2020 - Present</span><br>
+            <i>Code Sensei</i>
+            <ul>
+                <li>
+                    <span class="accent-dark">Educate</span> children between the ages of 7 to 14
+                    the <span class="accent-dark">fundamentals of programming</span> through game
+                    development, primarily using <span class="accent-dark">Javascript</span>.
+                </li>
+            </ul>
+        </div>
+        <div id="projects" class="content">
+            <h1>Projects</h1>
+            <hr>
+        </div>
+    </body>
+</html>
